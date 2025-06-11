@@ -29,8 +29,8 @@ app.get('/api/users', async (c) => {
 });
 
 app.post('/api/users', async (c) => {
-    const body = await c.req.parseBody();
-    if (typeof body.name !== 'string') {
+    const body = await c.req.json();
+    if (typeof body !== 'object' && typeof body.name !== 'string') {
         return c.text('Invalid request', 400);
     }
 
